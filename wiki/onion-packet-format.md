@@ -13,6 +13,8 @@ Total: 8,872 bytes
   └─ Onion-encrypted body: 8,192 bytes
 ```
 
+One important thing to note is that the encoding within the fixed-size body is not specified here, but it _must_ have some sort of integrity protection.
+
 ## Box encryption
 
 **Box encryption** (named after the similar construction from NaCl) is a generic way of encrypting a message, with integrity protection, so that only the owner of a particular X25519 secret key can read it.
@@ -36,7 +38,7 @@ The padding of the header to 680 bytes is done to keep the header size fixed, wh
 
 ## Body format
 
-The body is ChaCha20-encrypted with `KDF(s, "body")`, and is always exactly 8192 bytes in length.
+The body is ChaCha20-encrypted at every layer of the onion with `KDF(s, "body")`, and is always exactly 8192 bytes in length.
 
 ## Key-derivation function
 
