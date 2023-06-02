@@ -1,35 +1,17 @@
 # Onion packet format
 
-```
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                                                               |  ┐
-|        Box-encrypted routing info for first hop (68 bytes)    |  │
-|                                                               |  │
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+  │
-|                                                               |  │ Header (680 bytes)
-|                                                               |  │
-| Onion-encrypted routing info for next hops (612 bytes)        |  │
-|                                                               |  │
-|                                                               |  ┘
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                                                               |
-|                                                               |
-|                    Onion-encrypted body (8192 bytes)          |
-|                                                               |
-|                                                               |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+The onion-packet has two, fixed-size parts:
 
-Total Size: 8,872 bytes
+- The **header** which includes authenticated-encrypted routing messages
+- The **body** which is encrypted with layers of ChaCha20, with intentionally no authentication.
+
+```
+Total: 8,872 bytes
   ├─ Header: 680 bytes
   │    ├─ Box-encrypted routing info for first hop: 68 bytes
   │    └─ Onion-encrypted routing info for next hops: 612 bytes
   └─ Onion-encrypted body: 8,192 bytes
 ```
-
-The onion-packet has two, fixed-size parts:
-
-- The **header** which includes authenticated-encrypted routing messages
-- The **body** which is encrypted with layers of ChaCha20, with intentionally no authentication.
 
 ## Box encryption
 
