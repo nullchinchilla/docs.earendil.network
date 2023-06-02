@@ -1,6 +1,32 @@
 # Onion packet format
 
-The onion-packet has two parts:
+```
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                                                               |  ┐
+|        Box-encrypted routing info for first hop (68 bytes)    |  │
+|                                                               |  │
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+  │
+|                                                               |  │ Header (680 bytes)
+|                                                               |  │
+| Onion-encrypted routing info for next hops (612 bytes)        |  │
+|                                                               |  │
+|                                                               |  ┘
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                                                               |
+|                                                               |
+|                    Onion-encrypted body (8192 bytes)          |
+|                                                               |
+|                                                               |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+Total Size: 8,872 bytes
+  ├─ Header: 680 bytes
+  │    ├─ Box-encrypted routing info for first hop: 68 bytes
+  │    └─ Onion-encrypted routing info for next hops: 612 bytes
+  └─ Onion-encrypted body: 8,192 bytes
+```
+
+The onion-packet has two, fixed-size parts:
 
 - The **header** which includes authenticated-encrypted routing messages
 - The **body** which is encrypted with layers of ChaCha20, with intentionally no authentication.
@@ -28,7 +54,7 @@ The padding of the header to 680 bytes is done to keep the header size fixed, wh
 
 ## Body format
 
-The body is ChaCha20-encrypted with `KDF(s, "body")`
+The body is ChaCha20-encrypted with `KDF(s, "body")`, and is always exactly 8192 bytes in length.
 
 ## Key-derivation function
 
