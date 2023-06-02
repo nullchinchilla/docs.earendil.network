@@ -3,7 +3,7 @@
 The onion-packet has two, fixed-size parts:
 
 - The **header** which includes authenticated-encrypted routing messages
-- The **body** which is encrypted with layers of ChaCha20, with intentionally no authentication.
+- The **body** which is encrypted with layers of ChaCha20, with intentionally no integrity protection.
 
 ```
 Total: 8,872 bytes
@@ -13,7 +13,7 @@ Total: 8,872 bytes
   └─ Onion-encrypted body: 8,192 bytes
 ```
 
-One important thing to note is that the encoding within the fixed-size body is not specified here, but it _must_ have some sort of integrity protection.
+One important thing to note is that the encoding within the fixed-size body is not specified here, but it _must_ have some sort of _end-to-end_ integrity protection. The onion packet format will not help with that, at all.
 
 ## Box encryption
 
