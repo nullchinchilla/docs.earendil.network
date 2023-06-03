@@ -32,7 +32,8 @@ out_routes:
     alice:
         fingerprint: KCKUhWZfluAzMzwiw721CNrvyhc
         protocol: obfsudp
-        connect: d9aeca8eb2517c18ecf6f24769161be7049187a38c7c8a3391896d502b9bc462@100.1.2.3:18232
+        connect: 100.1.2.3:18232
+        cookie: d9aeca8eb2517c18ecf6f24769161be7049187a38c7c8a3391896d502b9bc462
     bob:
         fingerprint: eveIb0XRU8gULsiYxPBa1aUqjy0
         protocol: http-longpoll
