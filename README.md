@@ -6,7 +6,7 @@ Currently, Earendil is in its earliest stages of development.&#x20;
 The following is an _aspirational_ README describing the goals of the project. Very few features are done at the moment.
 {% endhint %}
 
-**Earendil** is a decentralized, censorship-resistant packet-routing overlay network designed for performance and censorship resistance. It allows any two nodes connected to Earendil to communicate freely, even against powerful state-level attackers.
+[**Earendil**](https://github.com/nullchinchilla/earendil) is a decentralized, censorship-resistant packet-routing overlay network designed for performance and censorship resistance. It allows any two nodes connected to Earendil to communicate freely, even against powerful state-level attackers.
 
 At first sight, Earendil seems similar to existing peer-to-peer onion routing networks like I2P or mixnets like Nym. But it has several distinguishing features:
 
